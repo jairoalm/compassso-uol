@@ -1,0 +1,177 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Teste Compasso UOL",
+		"_postman_id": "6ee59062-f373-3f38-46c9-2d9012244c81",
+		"description": "# Introduction\nRealizando testes na API lojinha com fluxo de cadastro, validação de campos e listagem de produtos.\n\n# Overview\nCoisas que os desenvolvedores devem saber\n\n# Authentication\nNessa API é recomenda usar a regra de negócio do produto.\n\n# Error Codes\nQuais erros e códigos de status um usuário pode esperar?\n\n# Rate limit\nExiste um limite para o número de solicitações que um usuário pode enviar?",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cadastrar um novo usuário",
+			"request": {
+				"url": "{{base_url}}/v2/usuarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"usuarioNome\": \"Teste UOL\",\r\n  \"usuarioLogin\": \"loginteste\",\r\n  \"usuarioSenha\": \"123456\"\r\n}"
+				},
+				"description": "Esta requisição é responsável por cadastrar um novo logiin de usuário."
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"request": {
+				"url": "{{base_url}}/v2/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"usuarioNome\": \"Teste UOL\",\r\n  \"usuarioLogin\": \"loginteste\",\r\n  \"usuarioSenha\": \"123456\"\r\n}"
+				},
+				"description": "Está requisição é responsável por criar o token para acesso a outras requisições."
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar produto",
+			"request": {
+				"url": "{{base_url}}/v2/produtos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvaWQiOiIzOTIyIiwidXN1YXJpb2xvZ2luIjoibG9naW50ZXN0ZSIsInVzdWFyaW9ub21lIjoiVGVzdGUgVU9MIn0.wFFArB90fagKJjjOHpYh5lm2fQdL_xVFNH5JmPHPMlU",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"produtoNome\": \"Tenis Nike\",\r\n  \"produtoValor\": 800.00,\r\n  \"produtoCores\": [\r\n    \"preto\", \"branco\"\r\n  ],\r\n  \"produtoUrlMock\": \"\",\r\n  \"componentes\": [\r\n    {\r\n      \"componenteNome\": \"Cadaços\",\r\n      \"componenteQuantidade\": 2\r\n    }\r\n  ]\r\n}"
+				},
+				"description": "Esta requisição é responsável por cadastrar um novo produto."
+			},
+			"response": []
+		},
+		{
+			"name": "Validação de campos",
+			"request": {
+				"url": "{{base_url}}/v2/produtos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvaWQiOiIzOTIyIiwidXN1YXJpb2xvZ2luIjoibG9naW50ZXN0ZSIsInVzdWFyaW9ub21lIjoiVGVzdGUgVU9MIn0.wFFArB90fagKJjjOHpYh5lm2fQdL_xVFNH5JmPHPMlU",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"produtoNome\": \"Tenis Nike\",\r\n  \"produtoValor\": 800.00,\r\n  \"produtoCores\": [\r\n    \"preto\", \"branco\"\r\n  ],\r\n  \"produtoUrlMock\": \"\",\r\n  \"componentes\": [\r\n    {\r\n      \"componenteNome\": \"Cadaços\",\r\n      \"componenteQuantidade\": 2\r\n    }\r\n  ]\r\n}"
+				},
+				"description": "Esta requisição é responsável por cadastrar um novo produto."
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar produto por ID",
+			"request": {
+				"url": "{{base_url}}/v2/produtos/21622",
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvaWQiOiIzOTIyIiwidXN1YXJpb2xvZ2luIjoibG9naW50ZXN0ZSIsInVzdWFyaW9ub21lIjoiVGVzdGUgVU9MIn0.wFFArB90fagKJjjOHpYh5lm2fQdL_xVFNH5JmPHPMlU",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Esta requisição é responsável por realizar buscas de produtos por ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar todos os produtos",
+			"request": {
+				"url": "{{base_url}}/v2/produtos",
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvaWQiOiIzOTIyIiwidXN1YXJpb2xvZ2luIjoibG9naW50ZXN0ZSIsInVzdWFyaW9ub21lIjoiVGVzdGUgVU9MIn0.wFFArB90fagKJjjOHpYh5lm2fQdL_xVFNH5JmPHPMlU",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Esta requisição é responsável por listar todos os produtos cadastrados."
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar produto",
+			"request": {
+				"url": "{{base_url}}/v2/produtos",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvaWQiOiIzOTIyIiwidXN1YXJpb2xvZ2luIjoibG9naW50ZXN0ZSIsInVzdWFyaW9ub21lIjoiVGVzdGUgVU9MIn0.wFFArB90fagKJjjOHpYh5lm2fQdL_xVFNH5JmPHPMlU",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"produtoNome\": \"etset\",\r\n  \"produtoValor\": 800.00,\r\n  \"produtoCores\": [\r\n    \"preto\", \"branco\"\r\n  ],\r\n  \"produtoUrlMock\": \"\",\r\n  \"componentes\": [\r\n    {\r\n      \"componenteNome\": \"Cadaços\",\r\n      \"componenteQuantidade\": 2\r\n    }\r\n  ]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar item do cadastro",
+			"request": {
+				"url": "",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvaWQiOiIzOTIyIiwidXN1YXJpb2xvZ2luIjoibG9naW50ZXN0ZSIsInVzdWFyaW9ub21lIjoiVGVzdGUgVU9MIn0.wFFArB90fagKJjjOHpYh5lm2fQdL_xVFNH5JmPHPMlU",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
